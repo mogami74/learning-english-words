@@ -12,11 +12,13 @@
 単語リストのJSONファイルは以下の場所に配置してください：
 
 ```
-units/
-  unit1/
-    wordlist.json    # Unit 1の単語リスト
-  unit2/
-    wordlist.json    # Unit 2の単語リスト
+lessons/
+  lesson1/
+    wordlist.json    # レッスン1の単語リスト
+  spelling-contest/
+    wordlist.json    # スペリングコンテストの単語リスト
+  basic-verbs/
+    wordlist.json    # 動詞活用練習の単語リスト
 ```
 
 #### JSONファイルの形式
@@ -83,7 +85,7 @@ CSVファイルから簡単にJSONファイルを作成できます：
 
 3. **生成されたJSONファイルを適切な場所に移動**
    ```bash
-   mv wordlist.json units/unit1/
+   mv wordlist.json lessons/lesson1/
    ```
 
 #### 注意事項
@@ -93,7 +95,7 @@ CSVファイルから簡単にJSONファイルを作成できます：
 
 ### 1. アプリの起動
 1. ブラウザでアプリを開きます
-2. トップページから学習したいユニットを選択
+2. トップページから学習したいレッスンを選択
 
 ### 2. 学習モード
 
@@ -120,7 +122,7 @@ CSVファイルから簡単にJSONファイルを作成できます：
 
 ## 📚 収録単語
 
-### Unit 1: 基礎英単語 (100語)
+### レッスン1: 基礎英単語 (100語)
 - **動詞**: call, love, think, make など
 - **名詞**: lesson, class, teacher, friend など
 - **代名詞**: our, they, yourself など
@@ -173,6 +175,22 @@ CSVファイルから簡単にJSONファイルを作成できます：
 
 何かご質問やご要望がございましたら、お気軽にお問い合わせください。
 
+## 👨‍💻 開発者向け
+
+### 開発ルール・指示書
+- **📋 開発ルール**: `.instructions/development-rules.md`
+- **✅ Git チェックリスト**: `.instructions/git-checklist.md`
+- **🚨 重要**: `git push` 後は必ず `DEVELOPMENT_LOG.md` を更新
+
+### プロジェクト構成
+```
+src/                    # TypeScriptソースコード
+lessons/                # レッスン別データとページ
+.instructions/          # 開発ルールとチェックリスト
+webpack.config.js       # ビルド設定
+server.js              # Express.js API サーバー
+```
+
 ---
 
 **開発**: 2025年6月  
@@ -182,7 +200,7 @@ CSVファイルから簡単にJSONファイルを作成できます：
 ## 🏃‍♂️ すぐに始める
 
 1. アプリを開く
-2. 「Unit 1」をクリック
+2. 「レッスン1」をクリック
 3. 「QA」または「QQ」を選択
 4. 学習開始！
 

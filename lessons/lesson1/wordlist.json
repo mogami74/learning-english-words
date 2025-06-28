@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "title": "Unit 1: 基礎英単語100語",
+    "title": "レッスン1: 基礎英単語100語",
     "description": "中学校レベルの基礎英単語集",
     "level": "beginner",
-    "unit": 1,
+    "lessonId": "lesson1",
     "totalWords": 100,
     "created": "2025-06-28",
     "version": "2.0"

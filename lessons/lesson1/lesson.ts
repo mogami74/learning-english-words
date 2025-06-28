@@ -1,4 +1,4 @@
-// Unit1用の型定義
+// レッスン用の型定義
 interface Word {
     id: number;
     japanese: string;
@@ -12,7 +12,7 @@ interface WordList {
         title: string;
         description: string;
         level: string;
-        unit: number;
+        lessonId: string;
         totalWords: number;
         created: string;
         version: string;
@@ -20,12 +20,14 @@ interface WordList {
     words: Word[];
 }
 
-// Unit1のワードリストクラス
-class Unit1WordList {
+// レッスンのワードリストクラス
+class LessonWordList {
     private wordList: WordList | null = null;
     private currentWordIndex: number = 0;
+    private lessonId: string;
 
-    constructor() {
+    constructor(lessonId: string = 'lesson1') {
+        this.lessonId = lessonId;
         this.loadWordList();
     }
 
@@ -38,7 +40,7 @@ class Unit1WordList {
             this.loadDifficultyFromStorage();
             
             if (this.wordList) {
-                console.log('Unit1 wordlist loaded:', this.wordList.metadata.title);
+                console.log(`${this.lessonId} wordlist loaded:`, this.wordList.metadata.title);
             }
         } catch (error) {
             console.error('Failed to load wordlist:', error);
@@ -125,7 +127,7 @@ class Unit1WordList {
             this.saveDifficultyToStorage();
             
             // サーバーAPIを使用してJSONファイルを更新
-            const response = await fetch('http://localhost:3001/api/update-wordlist/1', {
+            const response = await fetch(`http://localhost:3001/api/update-wordlist/${this.lessonId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -157,15 +159,15 @@ class Unit1WordList {
             difficultyData[word.id] = word.difficulty;
         });
         
-        localStorage.setItem('unit1_difficulty', JSON.stringify(difficultyData));
-        localStorage.setItem('unit1_wordlist_backup', JSON.stringify(this.wordList));
+        localStorage.setItem(`${this.lessonId}_difficulty`, JSON.stringify(difficultyData));
+        localStorage.setItem(`${this.lessonId}_wordlist_backup`, JSON.stringify(this.wordList));
     }
 
     // localStorageからdifficultyデータを読み込み
     private loadDifficultyFromStorage(): void {
         if (!this.wordList) return;
         
-        const savedData = localStorage.getItem('unit1_difficulty');
+        const savedData = localStorage.getItem(`${this.lessonId}_difficulty`);
         if (savedData) {
             try {
                 const difficultyData: {[key: number]: number} = JSON.parse(savedData);
@@ -195,8 +197,8 @@ class Unit1WordList {
 }
 
 // グローバルインスタンス
-const unit1WordListInstance = new Unit1WordList();
-(window as any).unit1WordList = unit1WordListInstance;
+const lessonWordListInstance = new LessonWordList('lesson1');
+(window as any).lessonWordList = lessonWordListInstance;
 
 // wordlist.htmlページでの自動初期化
 if (typeof window !== 'undefined' && window.location.pathname.includes('wordlist.html')) {
@@ -206,11 +208,11 @@ if (typeof window !== 'undefined' && window.location.pathname.includes('wordlist
             if (typeof (window as any).WordListViewer !== 'undefined') {
                 const WordListViewer = (window as any).WordListViewer;
                 
-                // unit1WordListの読み込み完了を待つ
+                // lessonWordListの読み込み完了を待つ
                 function checkWordListReady() {
-                    if (unit1WordListInstance.getWords().length > 0) {
+                    if (lessonWordListInstance.getWords().length > 0) {
                         console.log('Initializing WordListViewer...');
-                        const wordListViewer = new WordListViewer(1, unit1WordListInstance);
+                        const wordListViewer = new WordListViewer('lesson1', lessonWordListInstance);
                         wordListViewer.init();
                     } else {
                         setTimeout(checkWordListReady, 200);

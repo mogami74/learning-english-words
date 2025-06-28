@@ -5,7 +5,7 @@ interface WordListInstance {
 }
 
 export class WordListViewer {
-    private unitNumber: number;
+    private lessonId: string;
     private wordListInstance: WordListInstance;
     private allWords: any[] = [];
     private filteredWords: any[] = [];
@@ -26,8 +26,8 @@ export class WordListViewer {
     private hiddenWordsEl: HTMLElement | null = null;
     private activeWordsEl: HTMLElement | null = null;
 
-    constructor(unitNumber: number, wordListInstance: WordListInstance) {
-        this.unitNumber = unitNumber;
+    constructor(lessonId: string, wordListInstance: WordListInstance) {
+        this.lessonId = lessonId;
         this.wordListInstance = wordListInstance;
         this.initElements();
     }

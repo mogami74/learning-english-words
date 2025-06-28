@@ -7,7 +7,7 @@ module.exports = {
   entry: {
     index: './src/index.ts',
     qa: './src/ts/qa.ts',
-    unit1: './units/unit1/unit1.ts',
+    lesson1: './lessons/lesson1/lesson.ts',
     wordlist: './src/wordlist-main.ts'
   },
   module: {
@@ -43,30 +43,30 @@ module.exports = {
       inject: 'body'
     }),
     new HtmlWebpackPlugin({
-      template: './units/unit1/qa.html',
-      title: 'Unit 1 - 日本語→英語',
-      filename: 'unit1-qa.html',
-      chunks: ['unit1'],
+      template: './lessons/lesson1/lesson1-qa.html',
+      title: 'レッスン1 - 日本語→英語',
+      filename: 'lesson1-qa.html',
+      chunks: ['lesson1'],
       inject: 'body'
     }),
     new HtmlWebpackPlugin({
-      template: './units/unit1/qq.html',
-      title: 'Unit 1 - 英語→日本語',
-      filename: 'unit1-qq.html',
-      chunks: ['unit1'],
+      template: './lessons/lesson1/lesson1-qq.html',
+      title: 'レッスン1 - 英語→日本語',
+      filename: 'lesson1-qq.html',
+      chunks: ['lesson1'],
       inject: 'body'
     }),
     new HtmlWebpackPlugin({
-      template: './units/unit1/wordlist.html',
-      title: 'Unit 1 - 単語リスト',
-      filename: 'unit1-wordlist.html',
-      chunks: ['unit1', 'wordlist'],
+      template: './lessons/lesson1/lesson1-wordlist.html',
+      title: 'レッスン1 - 単語リスト',
+      filename: 'lesson1-wordlist.html',
+      chunks: ['lesson1', 'wordlist'],
       inject: 'body'
     }),
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: 'units/unit1/wordlist.json',
+          from: 'lessons/lesson1/wordlist.json',
           to: 'wordlist.json',
         },
         {

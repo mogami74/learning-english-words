@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit 1 - 日本語→英語を繰り返して表示</title>
+    <title>レッスン1 - 日本語を繰り返して表示</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             min-height: 100vh;
             color: #333;
         }
@@ -59,21 +59,21 @@
         }
         
         .word-display:hover {
-            background: #edf2f7;
-            border-color: #667eea;
+            background: #fef5e7;
+            border-color: #f5576c;
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.1);
+            box-shadow: 0 10px 25px rgba(245, 87, 108, 0.1);
         }
         
         .word-text {
             font-size: 2.5em;
             font-weight: bold;
-            color: #2d3748;
+            color: #f5576c;
             margin-bottom: 15px;
         }
         
         .word-category {
-            background: #667eea;
+            background: #f5576c;
             color: white;
             padding: 8px 16px;
             border-radius: 20px;
@@ -106,80 +106,21 @@
             transform: translateY(-2px);
         }
         
-        .state-japanese .word-text {
-            color: #667eea;
-        }
-        
-        .state-english .word-text {
-            color: #f5576c;
-        }
-        
-        .state-english .word-display {
-            border-color: #f5576c;
-        }
-        
-        .state-english .word-display:hover {
-            border-color: #e53e3e;
-            box-shadow: 0 10px 25px rgba(245, 87, 108, 0.1);
-        }
-        
         .loading {
             opacity: 0.6;
             pointer-events: none;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-            justify-content: center;
-        }
-
-        .learned-button {
-            padding: 12px 24px;
-            background: #48bb78;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .learned-button:hover {
-            background: #38a169;
-            transform: translateY(-2px);
-        }
-
-        .learned-button.hide-forever {
-            background: #f56565;
-        }
-
-        .learned-button.hide-forever:hover {
-            background: #e53e3e;
-        }
-
-        .learned-button:disabled {
-            background: #cbd5e0;
-            cursor: not-allowed;
-            transform: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>日本語→英語を繰り返して表示</h1>
+        <h1>日本語を繰り返して表示</h1>
         
         <div class="main-content">
             <div class="word-display loading" id="wordDisplay">
                 <div class="word-category" id="wordCategory">読み込み中...</div>
                 <div class="word-text" id="wordText">wordlistを読み込んでいます...</div>
                 <div class="instruction" id="instruction">しばらくお待ちください</div>
-            </div>
-            
-            <div class="action-buttons" id="actionButtons" style="display: none;">
-                <button class="learned-button" id="learnedButton">覚えた</button>
             </div>
         </div>
         
@@ -189,8 +130,7 @@
     <!-- Unit1WordListクラスを読み込み -->
     <script src="./unit1.js"></script>
     <script>
-        // 現在の状態管理
-        let currentState = 'japanese'; // 'japanese' or 'english'
+        // 現在の単語
         let currentWord = null;
 
         // DOM要素
@@ -199,8 +139,6 @@
         const wordCategory = document.getElementById('wordCategory');
         const instruction = document.getElementById('instruction');
         const backButton = document.getElementById('backButton');
-        const actionButtons = document.getElementById('actionButtons');
-        const learnedButton = document.getElementById('learnedButton');
 
         // 初期化
         async function init() {
@@ -220,77 +158,22 @@
         function showRandomJapanese() {
             currentWord = window.unit1WordList.getRandomWord();
             if (currentWord) {
-                currentState = 'japanese';
-                wordDisplay.className = 'word-display state-japanese';
                 wordCategory.textContent = `単語 ${currentWord.id}`;
                 wordText.textContent = currentWord.japanese;
-                instruction.textContent = 'クリックして英語を表示';
-                
-                // 「覚えた」ボタンを非表示
-                actionButtons.style.display = 'none';
-            } else {
-                // 表示可能な単語がない場合
-                wordCategory.textContent = '完了';
-                wordText.textContent = '学習可能な単語がありません';
-                instruction.textContent = 'すべての単語を覚えました！';
-                actionButtons.style.display = 'none';
-            }
-        }
-
-        // 対応する英語を表示
-        function showEnglish() {
-            if (currentWord) {
-                currentState = 'english';
-                wordDisplay.className = 'word-display state-english';
-                wordCategory.textContent = `単語 ${currentWord.id}`;
-                wordText.textContent = currentWord.english;
                 instruction.textContent = 'クリックして次の日本語を表示';
-                
-                // 「覚えた」ボタンを表示し、テキストを更新
-                actionButtons.style.display = 'flex';
-                updateLearnedButtonText();
-            }
-        }
-
-        // 「覚えた」ボタンのテキストを更新
-        function updateLearnedButtonText() {
-            if (currentWord) {
-                if (currentWord.difficulty === 0) {
-                    learnedButton.textContent = '以後表示しない';
-                    learnedButton.className = 'learned-button hide-forever';
-                } else {
-                    learnedButton.textContent = '覚えた';
-                    learnedButton.className = 'learned-button';
-                }
             }
         }
 
         // 単語表示エリアのクリックイベント
         wordDisplay.addEventListener('click', () => {
             if (wordDisplay.classList.contains('loading')) return;
-            
-            if (currentState === 'japanese') {
-                showEnglish();
-            } else {
-                showRandomJapanese();
-            }
+            showRandomJapanese();
         });
 
         // 戻るボタンのクリックイベント
         backButton.addEventListener('click', () => {
             // メイン画面に戻る
             window.location.href = '/index.html';
-        });
-
-        // 「覚えた」ボタンのクリックイベント
-        learnedButton.addEventListener('click', async () => {
-            if (currentWord && currentState === 'english') {
-                // 単語のdifficultyを1減らす
-                await window.unit1WordList.markWordAsLearned(currentWord.id);
-                
-                // 次の単語を表示
-                showRandomJapanese();
-            }
         });
 
         // 初期化実行

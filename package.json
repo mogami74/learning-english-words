@@ -10,7 +10,10 @@
     "webpack:dev": "webpack serve --mode=development",
     "start": "webpack serve --mode=development --open",
     "server": "node server.js",
-    "start:full": "concurrently \"npm run server\" \"npm run webpack:dev\""
+    "start:full": "concurrently \"npm run server\" \"npm run webpack:dev\"",
+    "rules": "cat .instructions/development-rules.md",
+    "checklist": "cat .instructions/git-checklist.md",
+    "help": "echo 'git push → 開発ログ更新を忘れずに!'"
   },
   "devDependencies": {
     "@types/node": "^24.0.4",

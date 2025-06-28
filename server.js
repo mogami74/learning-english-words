@@ -14,22 +14,22 @@ app.use(express.json());
 app.use(express.static('.'));
 
 // wordlist.jsonを更新するAPIエンドポイント
-app.post('/api/update-wordlist/:unit', async (req, res) => {
+app.post('/api/update-wordlist/:lesson', async (req, res) => {
     try {
-        const { unit } = req.params;
+        const { lesson } = req.params;
         const { wordList } = req.body;
         
         if (!wordList) {
             return res.status(400).json({ error: 'wordList is required' });
         }
         
-        const filePath = path.join(__dirname, 'units', `unit${unit}`, 'wordlist.json');
+        const filePath = path.join(__dirname, 'lessons', lesson, 'wordlist.json');
         
         // JSONファイルに書き込み
         await fs.writeFile(filePath, JSON.stringify(wordList, null, 2), 'utf8');
         
-        console.log(`Updated wordlist for unit ${unit}`);
-        res.json({ success: true, message: `Unit ${unit} wordlist updated successfully` });
+        console.log(`Updated wordlist for lesson ${lesson}`);
+        res.json({ success: true, message: `Lesson ${lesson} wordlist updated successfully` });
         
     } catch (error) {
         console.error('Error updating wordlist:', error);
@@ -38,10 +38,10 @@ app.post('/api/update-wordlist/:unit', async (req, res) => {
 });
 
 // 現在のwordlist.jsonを取得するAPIエンドポイント
-app.get('/api/wordlist/:unit', async (req, res) => {
+app.get('/api/wordlist/:lesson', async (req, res) => {
     try {
-        const { unit } = req.params;
-        const filePath = path.join(__dirname, 'units', `unit${unit}`, 'wordlist.json');
+        const { lesson } = req.params;
+        const filePath = path.join(__dirname, 'lessons', lesson, 'wordlist.json');
         
         const data = await fs.readFile(filePath, 'utf8');
         const wordList = JSON.parse(data);

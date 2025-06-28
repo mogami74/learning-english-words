@@ -1,4 +1,4 @@
-// Unit1のワードリスト型定義
+// レッスンのワードリスト型定義
 interface Word {
     id: number;
     japanese: string;
@@ -12,7 +12,7 @@ interface WordList {
         title: string;
         description: string;
         level: string;
-        unit: number;
+        lessonId: string;
         totalWords: number;
         created: string;
         version: string;
@@ -21,24 +21,27 @@ interface WordList {
 }
 
 // ワードリスト管理クラス
-class UnitManager {
-    private async loadUnit1WordList(): Promise<WordList | null> {
+class LessonManager {
+    private async loadLessonWordList(lessonId: string): Promise<WordList | null> {
         try {
-            const response = await fetch('./wordlist.json');
+            // 現在はlesson1のwordlist.jsonのみ対応
+            let wordlistPath = './wordlist.json';
+            
+            const response = await fetch(wordlistPath);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const wordList: WordList = await response.json();
             return wordList;
         } catch (error) {
-            console.error('Failed to load Unit1 wordlist:', error);
+            console.error(`Failed to load ${lessonId} wordlist:`, error);
             return null;
         }
     }
 
-    async updateUnit1Description(): Promise<void> {
-        const wordList = await this.loadUnit1WordList();
-        const descriptionElement = document.getElementById('unit1-description');
+    async updateLessonDescription(lessonId: string, elementId: string): Promise<void> {
+        const wordList = await this.loadLessonWordList(lessonId);
+        const descriptionElement = document.getElementById(elementId);
         
         if (descriptionElement) {
             if (wordList) {
@@ -54,10 +57,10 @@ class UnitManager {
 
 // DOM読み込み完了後の処理
 document.addEventListener('DOMContentLoaded', async () => {
-    const unitManager = new UnitManager();
+    const lessonManager = new LessonManager();
     
-    // Unit1の語数を動的に更新
-    await unitManager.updateUnit1Description();
+    // レッスン1の語数を動的に更新
+    await lessonManager.updateLessonDescription('lesson1', 'lesson1-description');
     
     console.log('ワードリストの語数表示を更新しました');
 });
