@@ -1,0 +1,27 @@
+{
+  "lessons": [
+    {
+      "id": "lesson1",
+      "path": "lessons/lesson1",
+      "status": "active",
+      "order": 1
+    },
+    {
+      "id": "spelling-contest", 
+      "path": "lessons/spelling-contest",
+      "status": "active",
+      "order": 2
+    },
+    {
+      "id": "basic-verbs",
+      "path": "lessons/basic-verbs", 
+      "status": "coming-soon",
+      "order": 3
+    }
+  ],
+  "defaultSettings": {
+    "cardStyle": "modern",
+    "showProgress": true,
+    "autoRefresh": true
+  }
+}

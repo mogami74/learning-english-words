@@ -11,11 +11,18 @@ interface WordList {
     metadata: {
         title: string;
         description: string;
+        shortDescription?: string;
+        category?: string;
         level: string;
         lessonId: string;
         totalWords: number;
         created: string;
         version: string;
+        displayInfo?: {
+            cardTitle?: string;
+            cardDescription?: string;
+            cardSubtitle?: string;
+        };
     };
     words: Word[];
 }
@@ -27,11 +34,15 @@ class LessonManager {
             // 現在はlesson1のwordlist.jsonのみ対応
             let wordlistPath = './wordlist.json';
             
+            console.log(`Loading wordlist from: ${wordlistPath}`);
             const response = await fetch(wordlistPath);
+            console.log(`Response status: ${response.status}, ok: ${response.ok}`);
+            
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const wordList: WordList = await response.json();
+            console.log(`Loaded wordlist:`, wordList.metadata);
             return wordList;
         } catch (error) {
             console.error(`Failed to load ${lessonId} wordlist:`, error);
@@ -46,10 +57,18 @@ class LessonManager {
         if (descriptionElement) {
             if (wordList) {
                 const wordCount = wordList.metadata.totalWords;
-                const title = wordList.metadata.description;
-                descriptionElement.textContent = `${title}（${wordCount}語）`;
+                
+                // 表示情報の優先順位: displayInfo.cardDescription > description > shortDescription
+                let displayText = wordList.metadata.displayInfo?.cardDescription 
+                                || wordList.metadata.description 
+                                || wordList.metadata.shortDescription 
+                                || 'レッスン内容';
+                
+                descriptionElement.textContent = `${displayText}（${wordCount}語）`;
+                
+                console.log(`Updated lesson description: ${displayText}（${wordCount}語）`);
             } else {
-                descriptionElement.textContent = '基本動詞と表現（読み込みエラー）';
+                descriptionElement.textContent = 'レッスン内容（読み込みエラー）';
             }
         }
     }

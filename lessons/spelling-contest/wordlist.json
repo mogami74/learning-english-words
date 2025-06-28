@@ -1,0 +1,38 @@
+{
+  "metadata": {
+    "title": "スペリングコンテスト: 重要単語50語",
+    "description": "スペリングコンテスト対策用単語集",
+    "shortDescription": "スペリング対策",
+    "category": "コンテスト準備",
+    "level": "intermediate",
+    "lessonId": "spelling-contest",
+    "totalWords": 50,
+    "created": "2025-06-28",
+    "version": "1.0",
+    "displayInfo": {
+      "cardTitle": "📝 スペリングコンテスト",
+      "cardDescription": "コンテスト頻出単語の特訓",
+      "cardSubtitle": "正確な綴りをマスター"
+    }
+  },
+  "words": [
+    {
+      "id": 1,
+      "japanese": "必要な",
+      "english": "necessary",
+      "difficulty": 2
+    },
+    {
+      "id": 2,
+      "japanese": "美しい",
+      "english": "beautiful",
+      "difficulty": 2
+    },
+    {
+      "id": 3,
+      "japanese": "興味深い",
+      "english": "interesting",
+      "difficulty": 2
+    }
+  ]
+}

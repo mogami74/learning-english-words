@@ -11,11 +11,18 @@ interface WordList {
     metadata: {
         title: string;
         description: string;
+        shortDescription?: string;
+        category?: string;
         level: string;
         lessonId: string;
         totalWords: number;
         created: string;
         version: string;
+        displayInfo?: {
+            cardTitle?: string;
+            cardDescription?: string;
+            cardSubtitle?: string;
+        };
     };
     words: Word[];
 }
