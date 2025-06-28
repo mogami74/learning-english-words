@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #4a5568;
+            margin-bottom: 30px;
+        }
+        
+        .unit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .unit-card {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .unit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .unit-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+        
+        .unit-description {
+            color: #718096;
+            margin-bottom: 20px;
+        }
+        
+        .quiz-links {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .quiz-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .quiz-btn.ja-to-en {
+            background: #667eea;
+            color: white;
+        }
+        
+        .quiz-btn.en-to-ja {
+            background: #f5576c;
+            color: white;
+        }
+        
+        .quiz-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="app">
+            <h1>🎓 Learning English Words</h1>
+            <p style="text-align: center; color: #718096;">英単語学習アプリへようこそ！</p>
+            
+            <div class="unit-grid">
+                <div class="unit-card">
+                    <div class="unit-title">📚 Unit 1</div>
+                    <div class="unit-description" id="unit1-description">基本動詞と表現（読み込み中...）</div>
+                    <div class="quiz-links">
+                        <a href="unit1-qa.html" class="quiz-btn ja-to-en">日→英表示</a>
+                        <a href="unit1-qq.html" class="quiz-btn en-to-ja">日本語表示</a>
+                    </div>
+                </div>
+                
+                <div class="unit-card" style="opacity: 0.5;">
+                    <div class="unit-title">📖 Unit 2</div>
+                    <div class="unit-description">準備中...</div>
+                    <div class="quiz-links">
+                        <span style="color: #a0aec0;">Coming Soon</span>
+                    </div>
+                </div>
+                
+                <div class="unit-card" style="opacity: 0.5;">
+                    <div class="unit-title">📝 Unit 3</div>
+                    <div class="unit-description">準備中...</div>
+                    <div class="quiz-links">
+                        <span style="color: #a0aec0;">Coming Soon</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

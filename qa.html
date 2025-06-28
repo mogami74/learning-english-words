@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q&A ページ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        
+        .form-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        textarea {
+            height: 80px;
+            resize: vertical;
+        }
+        
+        button {
+            background-color: #007ACC;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #005999;
+        }
+        
+        .qa-item {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qa-item h3 {
+            color: #007ACC;
+            margin-top: 0;
+        }
+        
+        .qa-item p {
+            margin-bottom: 0;
+        }
+        
+        hr {
+            border: none;
+            border-top: 1px solid #eee;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Q&A アプリケーション</h1>
+    
+    <div class="form-container">
+        <h2>新しいQ&Aを追加</h2>
+        <form id="qa-form">
+            <div class="form-group">
+                <label for="question-input">質問:</label>
+                <input type="text" id="question-input" required>
+            </div>
+            <div class="form-group">
+                <label for="answer-input">回答:</label>
+                <textarea id="answer-input" required></textarea>
+            </div>
+            <button type="submit">追加</button>
+        </form>
+    </div>
+    
+    <div id="qa-container">
+        <!-- Q&Aアイテムがここに動的に追加されます -->
+    </div>
+</body>
+</html>

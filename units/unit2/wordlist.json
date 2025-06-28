@@ -1,0 +1,188 @@
+{
+  "metadata": {
+    "title": "Unit 2: 表現と場所",
+    "description": "日常表現と場所に関する単語",
+    "level": "beginner",
+    "unit": 2,
+    "totalWords": 25,
+    "created": "2025-06-28",
+    "version": "1.0"
+  },
+  "words": [
+    {
+      "id": 26,
+      "japanese": "どういたしまして。",
+      "english": "You're welcome.",
+      "category": "表現",
+      "difficulty": 1
+    },
+    {
+      "id": 27,
+      "japanese": "ありがとう。",
+      "english": "Thank you.",
+      "category": "表現",
+      "difficulty": 1
+    },
+    {
+      "id": 28,
+      "japanese": "シンボル",
+      "english": "symbol",
+      "category": "名詞",
+      "difficulty": 2
+    },
+    {
+      "id": 29,
+      "japanese": "……のかわりに",
+      "english": "for",
+      "category": "前置詞",
+      "difficulty": 1
+    },
+    {
+      "id": 30,
+      "japanese": "興味深い",
+      "english": "interesting",
+      "category": "形容詞",
+      "difficulty": 2
+    },
+    {
+      "id": 31,
+      "japanese": "お気に入りの",
+      "english": "favorite",
+      "category": "形容詞",
+      "difficulty": 1
+    },
+    {
+      "id": 32,
+      "japanese": "登場人物",
+      "english": "character",
+      "category": "名詞",
+      "difficulty": 2
+    },
+    {
+      "id": 33,
+      "japanese": "……もまた",
+      "english": "also",
+      "category": "副詞",
+      "difficulty": 1
+    },
+    {
+      "id": 34,
+      "japanese": "……の近くに",
+      "english": "around",
+      "category": "前置詞",
+      "difficulty": 1
+    },
+    {
+      "id": 35,
+      "japanese": "……のあとに",
+      "english": "after",
+      "category": "前置詞",
+      "difficulty": 1
+    },
+    {
+      "id": 36,
+      "japanese": "オンラインで",
+      "english": "online",
+      "category": "副詞",
+      "difficulty": 1
+    },
+    {
+      "id": 37,
+      "japanese": "放課後",
+      "english": "after school",
+      "category": "表現",
+      "difficulty": 1
+    },
+    {
+      "id": 38,
+      "japanese": "ろうか",
+      "english": "hallway",
+      "category": "名詞",
+      "difficulty": 2
+    },
+    {
+      "id": 39,
+      "japanese": "(……に)勝つ",
+      "english": "win",
+      "category": "動詞",
+      "difficulty": 1
+    },
+    {
+      "id": 40,
+      "japanese": "次の",
+      "english": "next",
+      "category": "形容詞",
+      "difficulty": 1
+    },
+    {
+      "id": 41,
+      "japanese": "運、 幸運",
+      "english": "luck",
+      "category": "名詞",
+      "difficulty": 1
+    },
+    {
+      "id": 42,
+      "japanese": "……の近くに",
+      "english": "near",
+      "category": "前置詞",
+      "difficulty": 1
+    },
+    {
+      "id": 43,
+      "japanese": "ニュージーランド",
+      "english": "New Zealand",
+      "category": "国名",
+      "difficulty": 2
+    },
+    {
+      "id": 44,
+      "japanese": "子イヌ",
+      "english": "puppy",
+      "category": "名詞",
+      "difficulty": 1
+    },
+    {
+      "id": 45,
+      "japanese": "……の中の",
+      "english": "in",
+      "category": "前置詞",
+      "difficulty": 1
+    },
+    {
+      "id": 46,
+      "japanese": "いつか",
+      "english": "someday",
+      "category": "副詞",
+      "difficulty": 1
+    },
+    {
+      "id": 47,
+      "japanese": "たくさんの",
+      "english": "a lot of",
+      "category": "表現",
+      "difficulty": 1
+    },
+    {
+      "id": 48,
+      "japanese": "彼らは、彼女らは、それらは",
+      "english": "they",
+      "category": "代名詞",
+      "difficulty": 1
+    },
+    {
+      "id": 49,
+      "japanese": "……の1つ",
+      "english": "one of",
+      "category": "表現",
+      "difficulty": 2
+    },
+    {
+      "id": 50,
+      "japanese": "いくつの",
+      "english": "How many ?",
+      "category": "疑問詞",
+      "difficulty": 1
+    }
+  ]
+}
