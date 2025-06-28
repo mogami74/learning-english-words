@@ -7,16 +7,34 @@
       "order": 1
     },
     {
+      "id": "lesson2",
+      "path": "lessons/lesson2",
+      "status": "active",
+      "order": 2
+    },
+    {
+      "id": "lesson3",
+      "path": "lessons/lesson3",
+      "status": "coming-soon",
+      "order": 3
+    },
+    {
+      "id": "lesson4",
+      "path": "lessons/lesson4",
+      "status": "coming-soon",
+      "order": 4
+    },
+    {
       "id": "spelling-contest", 
       "path": "lessons/spelling-contest",
       "status": "active",
-      "order": 2
+      "order": 5
     },
     {
       "id": "basic-verbs",
       "path": "lessons/basic-verbs", 
       "status": "coming-soon",
-      "order": 3
+      "order": 6
     }
   ],
   "defaultSettings": {

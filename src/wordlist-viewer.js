@@ -12,7 +12,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WordListViewer = void 0;
 class WordListViewer {
-    constructor(unitNumber, wordListInstance) {
+    constructor(lessonId, wordListInstance) {
         this.allWords = [];
         this.filteredWords = [];
         // DOM要素
@@ -23,12 +23,13 @@ class WordListViewer {
         this.difficultyFilter = null;
         this.searchInput = null;
         this.backButton = null;
+        this.resetAllButton = null;
         // 統計要素
         this.totalWordsEl = null;
         this.learnedWordsEl = null;
         this.hiddenWordsEl = null;
         this.activeWordsEl = null;
-        this.unitNumber = unitNumber;
+        this.lessonId = lessonId;
         this.wordListInstance = wordListInstance;
         this.initElements();
     }
@@ -41,6 +42,7 @@ class WordListViewer {
         this.difficultyFilter = document.getElementById('difficultyFilter');
         this.searchInput = document.getElementById('searchInput');
         this.backButton = document.getElementById('backButton');
+        this.resetAllButton = document.getElementById('resetAllButton');
         // 統計要素
         this.totalWordsEl = document.getElementById('totalWords');
         this.learnedWordsEl = document.getElementById('learnedWords');
@@ -74,6 +76,11 @@ class WordListViewer {
         if (this.backButton) {
             this.backButton.addEventListener('click', () => {
                 window.location.href = '/index.html';
+            });
+        }
+        if (this.resetAllButton) {
+            this.resetAllButton.addEventListener('click', () => {
+                this.showResetAllConfirmation();
             });
         }
     }
@@ -229,6 +236,71 @@ class WordListViewer {
             }
             catch (error) {
                 console.error('Failed to change difficulty:', error);
+            }
+        });
+    }
+    // 全単語のdifficultyリセット確認ダイアログ
+    showResetAllConfirmation() {
+        const availableWords = this.allWords.filter(word => word.difficulty !== -1);
+        const hiddenWords = this.allWords.filter(word => word.difficulty === -1);
+        let message = `全ての単語のdifficultyを+1しますか？\n\n`;
+        message += `対象: ${availableWords.length}語\n`;
+        if (hiddenWords.length > 0) {
+            message += `非表示: ${hiddenWords.length}語（変更されません）\n`;
+        }
+        message += `\nこの操作は元に戻せません。`;
+        if (confirm(message)) {
+            this.resetAllDifficulty();
+        }
+    }
+    // 全単語のdifficultyを+1する
+    resetAllDifficulty() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                // 進行状況表示の準備
+                if (this.loadingMessage) {
+                    this.loadingMessage.textContent = 'difficulty を更新中...';
+                    this.loadingMessage.style.display = 'block';
+                }
+                if (this.wordTable)
+                    this.wordTable.style.display = 'none';
+                const availableWords = this.allWords.filter(word => word.difficulty !== -1);
+                let successCount = 0;
+                let errorCount = 0;
+                // 各単語のdifficultyを+1
+                for (const word of availableWords) {
+                    try {
+                        const newDifficulty = Math.min(10, word.difficulty + 1);
+                        if (this.wordListInstance && typeof this.wordListInstance.updateWordDifficulty === 'function') {
+                            yield this.wordListInstance.updateWordDifficulty(word.id, newDifficulty);
+                            successCount++;
+                        }
+                    }
+                    catch (error) {
+                        console.error(`Failed to update word ${word.id}:`, error);
+                        errorCount++;
+                    }
+                }
+                // 結果表示
+                const totalWords = availableWords.length;
+                let resultMessage = `difficulty更新完了！\n`;
+                resultMessage += `成功: ${successCount}語\n`;
+                if (errorCount > 0) {
+                    resultMessage += `失敗: ${errorCount}語\n`;
+                }
+                alert(resultMessage);
+                // UIを更新
+                this.refresh();
+                console.log(`Bulk difficulty update completed: ${successCount}/${totalWords} words updated`);
+            }
+            catch (error) {
+                console.error('Failed to reset all difficulties:', error);
+                alert('difficulty更新中にエラーが発生しました。');
+                // エラー時はUI表示を復元
+                if (this.loadingMessage)
+                    this.loadingMessage.style.display = 'none';
+                if (this.wordTable)
+                    this.wordTable.style.display = 'table';
             }
         });
     }

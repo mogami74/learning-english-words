@@ -1,12 +1,19 @@
 {
   "metadata": {
-    "title": "Unit 2: 表現と場所",
+    "title": "Lesson 2: 表現と場所",
     "description": "日常表現と場所に関する単語",
     "level": "beginner",
-    "unit": 2,
+    "lesson": 2,
     "totalWords": 25,
     "created": "2025-06-28",
-    "version": "1.0"
+    "version": "1.0",
+    "displayInfo": {
+      "cardTitle": "日常表現と場所",
+      "cardDescription": "よく使う表現と場所に関する基本英単語",
+      "cardSubtitle": "Lesson 2",
+      "shortDescription": "日常会話でよく使用される表現と場所に関する単語を学習",
+      "category": "基礎英語"
+    }
   },
   "words": [
     {

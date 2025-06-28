@@ -9,35 +9,46 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 // ワードリスト管理クラス
-class UnitManager {
-    loadUnit1WordList() {
+class LessonManager {
+    loadLessonWordList(lessonId) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield fetch('./wordlist.json');
+                // 現在はlesson1のwordlist.jsonのみ対応
+                let wordlistPath = './wordlist.json';
+                console.log(`Loading wordlist from: ${wordlistPath}`);
+                const response = yield fetch(wordlistPath);
+                console.log(`Response status: ${response.status}, ok: ${response.ok}`);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const wordList = yield response.json();
+                console.log(`Loaded wordlist:`, wordList.metadata);
                 return wordList;
             }
             catch (error) {
-                console.error('Failed to load Unit1 wordlist:', error);
+                console.error(`Failed to load ${lessonId} wordlist:`, error);
                 return null;
             }
         });
     }
-    updateUnit1Description() {
+    updateLessonDescription(lessonId, elementId) {
         return __awaiter(this, void 0, void 0, function* () {
-            const wordList = yield this.loadUnit1WordList();
-            const descriptionElement = document.getElementById('unit1-description');
+            var _a;
+            const wordList = yield this.loadLessonWordList(lessonId);
+            const descriptionElement = document.getElementById(elementId);
             if (descriptionElement) {
                 if (wordList) {
                     const wordCount = wordList.metadata.totalWords;
-                    const title = wordList.metadata.description;
-                    descriptionElement.textContent = `${title}（${wordCount}語）`;
+                    // 表示情報の優先順位: displayInfo.cardDescription > description > shortDescription
+                    let displayText = ((_a = wordList.metadata.displayInfo) === null || _a === void 0 ? void 0 : _a.cardDescription)
+                        || wordList.metadata.description
+                        || wordList.metadata.shortDescription
+                        || 'レッスン内容';
+                    descriptionElement.textContent = `${displayText}（${wordCount}語）`;
+                    console.log(`Updated lesson description: ${displayText}（${wordCount}語）`);
                 }
                 else {
-                    descriptionElement.textContent = '基本動詞と表現（読み込みエラー）';
+                    descriptionElement.textContent = 'レッスン内容（読み込みエラー）';
                 }
             }
         });
@@ -45,8 +56,8 @@ class UnitManager {
 }
 // DOM読み込み完了後の処理
 document.addEventListener('DOMContentLoaded', () => __awaiter(void 0, void 0, void 0, function* () {
-    const unitManager = new UnitManager();
-    // Unit1の語数を動的に更新
-    yield unitManager.updateUnit1Description();
+    const lessonManager = new LessonManager();
+    // レッスン1の語数を動的に更新
+    yield lessonManager.updateLessonDescription('lesson1', 'lesson1-description');
     console.log('ワードリストの語数表示を更新しました');
 }));
