@@ -20,6 +20,8 @@ class Unit1WordList {
             try {
                 const response = yield fetch('./wordlist.json');
                 this.wordList = yield response.json();
+                // localStorageから保存されたdifficultyデータを読み込み
+                this.loadDifficultyFromStorage();
                 if (this.wordList) {
                     console.log('Unit1 wordlist loaded:', this.wordList.metadata.title);
                 }
@@ -50,12 +52,113 @@ class Unit1WordList {
         return this.getCurrentWord();
     }
     getRandomWord() {
-        const words = this.getWords();
-        if (words.length === 0)
+        const availableWords = this.getAvailableWords();
+        if (availableWords.length === 0)
             return null;
-        const randomIndex = Math.floor(Math.random() * words.length);
-        this.currentWordIndex = randomIndex;
-        return words[randomIndex];
+        // difficultyに基づく重み付きランダム選択
+        const weightedWords = [];
+        availableWords.forEach(word => {
+            const weight = Math.max(1, word.difficulty); // 最低1回は含める
+            for (let i = 0; i < weight; i++) {
+                weightedWords.push(word);
+            }
+        });
+        const randomIndex = Math.floor(Math.random() * weightedWords.length);
+        const selectedWord = weightedWords[randomIndex];
+        // currentWordIndexを更新
+        const originalWords = this.getWords();
+        this.currentWordIndex = originalWords.findIndex(w => w.id === selectedWord.id);
+        return selectedWord;
+    }
+    // difficulty=-1以外の単語を取得
+    getAvailableWords() {
+        return this.getWords().filter(word => word.difficulty !== -1);
+    }
+    // difficultyを1減らす（覚えた処理）
+    markWordAsLearned(wordId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const words = this.getWords();
+            const word = words.find(w => w.id === wordId);
+            if (word) {
+                word.difficulty = Math.max(-1, word.difficulty - 1);
+                yield this.saveWordListToFile();
+            }
+        });
+    }
+    // 単語のdifficultyを変更
+    updateWordDifficulty(wordId, newDifficulty) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const words = this.getWords();
+            const word = words.find(w => w.id === wordId);
+            if (word) {
+                word.difficulty = newDifficulty;
+                yield this.saveWordListToFile();
+            }
+        });
+    }
+    // wordlist.jsonファイルに保存
+    saveWordListToFile() {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!this.wordList)
+                return;
+            try {
+                // localStorageにバックアップを保存
+                this.saveDifficultyToStorage();
+                // サーバーAPIを使用してJSONファイルを更新
+                const response = yield fetch('http://localhost:3001/api/update-wordlist/1', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        wordList: this.wordList
+                    })
+                });
+                if (response.ok) {
+                    const result = yield response.json();
+                    console.log('Wordlist saved to file:', result.message);
+                }
+                else {
+                    console.error('Failed to save wordlist to file');
+                    // サーバーエラーの場合はlocalStorageのみ使用
+                }
+            }
+            catch (error) {
+                console.error('Error saving wordlist to file:', error);
+                // ネットワークエラーの場合はlocalStorageのみ使用
+            }
+        });
+    }
+    // localStorageにdifficultyデータを保存（バックアップ用）
+    saveDifficultyToStorage() {
+        if (!this.wordList)
+            return;
+        const difficultyData = {};
+        this.wordList.words.forEach(word => {
+            difficultyData[word.id] = word.difficulty;
+        });
+        localStorage.setItem('unit1_difficulty', JSON.stringify(difficultyData));
+        localStorage.setItem('unit1_wordlist_backup', JSON.stringify(this.wordList));
+    }
+    // localStorageからdifficultyデータを読み込み
+    loadDifficultyFromStorage() {
+        if (!this.wordList)
+            return;
+        const savedData = localStorage.getItem('unit1_difficulty');
+        if (savedData) {
+            try {
+                const difficultyData = JSON.parse(savedData);
+                this.wordList.words.forEach(word => {
+                    if (difficultyData[word.id] !== undefined) {
+                        word.difficulty = difficultyData[word.id];
+                    }
+                });
+                console.log('Difficulty data loaded from localStorage');
+            }
+            catch (error) {
+                console.error('Failed to load difficulty data from storage:', error);
+            }
+        }
     }
     getTotalWords() {
         var _a;
@@ -69,4 +172,32 @@ class Unit1WordList {
     }
 }
 // グローバルインスタンス
-window.unit1WordList = new Unit1WordList();
+const unit1WordListInstance = new Unit1WordList();
+window.unit1WordList = unit1WordListInstance;
+// wordlist.htmlページでの自動初期化
+if (typeof window !== 'undefined' && window.location.pathname.includes('wordlist.html')) {
+    document.addEventListener('DOMContentLoaded', () => {
+        // WordListViewerが利用可能になるまで待つ
+        function initializeWordListViewer() {
+            if (typeof window.WordListViewer !== 'undefined') {
+                const WordListViewer = window.WordListViewer;
+                // unit1WordListの読み込み完了を待つ
+                function checkWordListReady() {
+                    if (unit1WordListInstance.getWords().length > 0) {
+                        console.log('Initializing WordListViewer...');
+                        const wordListViewer = new WordListViewer(1, unit1WordListInstance);
+                        wordListViewer.init();
+                    }
+                    else {
+                        setTimeout(checkWordListReady, 200);
+                    }
+                }
+                checkWordListReady();
+            }
+            else {
+                setTimeout(initializeWordListViewer, 100);
+            }
+        }
+        initializeWordListViewer();
+    });
+}

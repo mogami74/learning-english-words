@@ -8,7 +8,9 @@
     "dev": "tsc --watch",
     "webpack:build": "webpack --mode=production",
     "webpack:dev": "webpack serve --mode=development",
-    "start": "webpack serve --mode=development --open"
+    "start": "webpack serve --mode=development --open",
+    "server": "node server.js",
+    "start:full": "concurrently \"npm run server\" \"npm run webpack:dev\""
   },
   "devDependencies": {
     "@types/node": "^24.0.4",
@@ -19,5 +21,10 @@
     "webpack": "^5.99.9",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "concurrently": "^8.2.2"
   }
 }

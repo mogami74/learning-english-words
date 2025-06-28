@@ -11,21 +11,21 @@
     "japanese": "南アフリカ共和国",
     "english": "South Africa",
     "category": "その他",
-    "difficulty": 3
+    "difficulty": 1
   },
   {
     "id": 3,
     "japanese": "……が大好きである",
     "english": "love",
     "category": "動詞",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 4,
     "japanese": "私を……と呼んでください。",
     "english": "Call me",
     "category": "動詞",
-    "difficulty": 3
+    "difficulty": 1
   },
   {
     "id": 5,
@@ -46,14 +46,14 @@
     "japanese": "しばしば、よく",
     "english": "often",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 8,
     "japanese": "……といっしょに",
     "english": "with",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 9,
@@ -81,7 +81,7 @@
     "japanese": "…… について",
     "english": "about",
     "category": "接続詞・前置詞",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 13,
@@ -116,28 +116,28 @@
     "japanese": "アメリカ",
     "english": "America",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 18,
     "japanese": "得意だ",
     "english": "be good at",
     "category": "その他",
-    "difficulty": 3
+    "difficulty": 1
   },
   {
     "id": 19,
     "japanese": "中国の",
     "english": "Chinese",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 20,
     "japanese": "……できない",
     "english": "cannot",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 21,
@@ -179,14 +179,14 @@
     "japanese": "どういたしまして。",
     "english": "You're welcome.",
     "category": "その他",
-    "difficulty": 3
+    "difficulty": 1
   },
   {
     "id": 27,
     "japanese": "ありがとう。",
     "english": "Thank you.",
     "category": "その他",
-    "difficulty": 3
+    "difficulty": 1
   },
   {
     "id": 28,
@@ -200,28 +200,28 @@
     "japanese": "……のかわりに",
     "english": "for",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 30,
     "japanese": "興味深い",
     "english": "interesting",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 31,
     "japanese": "お気に入りの",
     "english": "favorite",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 32,
     "japanese": "登場人物",
     "english": "character",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 33,
@@ -235,42 +235,42 @@
     "japanese": "……の近くに",
     "english": "around",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 35,
     "japanese": "……のあとに",
     "english": "after",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 36,
     "japanese": "オンラインで",
     "english": "online",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 37,
-    "japanese": "放課後 2",
+    "japanese": "放課後",
     "english": "after school",
     "category": "その他",
-    "difficulty": 3
+    "difficulty": 1
   },
   {
     "id": 38,
     "japanese": "ろうか",
     "english": "hallway",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 39,
     "japanese": "(……に)勝つ",
     "english": "win",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 40,
@@ -291,14 +291,14 @@
     "japanese": "……の近くに",
     "english": "near",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 43,
     "japanese": "ニュージーランド",
     "english": "New Zealand",
     "category": "その他",
-    "difficulty": 3
+    "difficulty": 1
   },
   {
     "id": 44,
@@ -319,35 +319,35 @@
     "japanese": "いつか",
     "english": "someday",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 47,
-    "japanese": "たくさんの3",
+    "japanese": "たくさんの",
     "english": "a lot of",
     "category": "その他",
-    "difficulty": 3
+    "difficulty": 1
   },
   {
     "id": 48,
     "japanese": "彼らは彼女らはそれらは",
     "english": "they",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 49,
-    "japanese": "……の1つ★2",
+    "japanese": "……の1つ",
     "english": "one of",
     "category": "その他",
-    "difficulty": 3
+    "difficulty": 1
   },
   {
     "id": 50,
     "japanese": "いくつの",
     "english": "How many ?",
     "category": "その他",
-    "difficulty": 3
+    "difficulty": 1
   },
   {
     "id": 51,
@@ -368,14 +368,14 @@
     "japanese": "……のような",
     "english": "like",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 54,
     "japanese": "……時",
     "english": "o'clock",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 55,
@@ -389,14 +389,14 @@
     "japanese": "……である、……になる",
     "english": "be",
     "category": "動詞",
-    "difficulty": 3
+    "difficulty": 1
   },
   {
     "id": 57,
     "japanese": "緊張して",
     "english": "nervous",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 58,
@@ -410,7 +410,7 @@
     "japanese": "あなた自身を[に]",
     "english": "yourself",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 60,
@@ -424,28 +424,28 @@
     "japanese": "キーウィ[動物名]",
     "english": "kiwi",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 62,
     "japanese": "正しい、 正確な",
     "english": "right",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 63,
-    "japanese": "楽しむ 2",
+    "japanese": "楽しむ",
     "english": "enjoy oneself",
     "category": "その他",
-    "difficulty": 3
+    "difficulty": 1
   },
   {
     "id": 64,
-    "japanese": "……を見る 2",
+    "japanese": "……を見る",
     "english": "look at",
     "category": "その他",
-    "difficulty": 3
+    "difficulty": 1
   },
   {
     "id": 65,
@@ -487,14 +487,14 @@
     "japanese": "する、演奏する",
     "english": "play",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 71,
     "japanese": "……に加わる",
     "english": "join",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 72,
@@ -508,7 +508,7 @@
     "japanese": "水泳",
     "english": "swimming",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 74,
@@ -522,28 +522,28 @@
     "japanese": "英語",
     "english": "English",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 76,
     "japanese": "(...) 歌う",
     "english": "sing",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 77,
     "japanese": "考える、 思う",
     "english": "think",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 78,
     "japanese": "先生",
     "english": "teacher",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 79,
@@ -585,7 +585,7 @@
     "japanese": "たいてい",
     "english": "usually",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 85,
@@ -648,21 +648,21 @@
     "japanese": "火曜日",
     "english": "Tuesday",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 94,
     "japanese": "水曜日",
     "english": "Wednesday",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 95,
     "japanese": "木曜日",
     "english": "Thursday",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 96,
@@ -676,14 +676,14 @@
     "japanese": "土曜日",
     "english": "Saturday",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 98,
     "japanese": "週、 1週間",
     "english": "week",
     "category": "その他",
-    "difficulty": 2
+    "difficulty": 1
   },
   {
     "id": 99,

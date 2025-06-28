@@ -7,7 +7,8 @@ module.exports = {
   entry: {
     index: './src/index.ts',
     qa: './src/ts/qa.ts',
-    unit1: './units/unit1/unit1.ts'
+    unit1: './units/unit1/unit1.ts',
+    wordlist: './src/wordlist-main.ts'
   },
   module: {
     rules: [
@@ -31,25 +32,36 @@ module.exports = {
       template: './src/index.html',
       title: 'Learning English Words',
       filename: 'index.html',
-      chunks: ['index']
+      chunks: ['index'],
+      inject: 'body'
     }),
     new HtmlWebpackPlugin({
       template: './qa.html',
       title: 'Q&A Page',
       filename: 'qa.html',
-      chunks: ['qa']
+      chunks: ['qa'],
+      inject: 'body'
     }),
     new HtmlWebpackPlugin({
       template: './units/unit1/qa.html',
       title: 'Unit 1 - 日本語→英語',
       filename: 'unit1-qa.html',
-      chunks: ['unit1']
+      chunks: ['unit1'],
+      inject: 'body'
     }),
     new HtmlWebpackPlugin({
       template: './units/unit1/qq.html',
       title: 'Unit 1 - 英語→日本語',
       filename: 'unit1-qq.html',
-      chunks: ['unit1']
+      chunks: ['unit1'],
+      inject: 'body'
+    }),
+    new HtmlWebpackPlugin({
+      template: './units/unit1/wordlist.html',
+      title: 'Unit 1 - 単語リスト',
+      filename: 'unit1-wordlist.html',
+      chunks: ['unit1', 'wordlist'],
+      inject: 'body'
     }),
     new CopyWebpackPlugin({
       patterns: [

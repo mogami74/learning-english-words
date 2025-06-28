@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 1 - 単語リスト</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            min-height: 80vh;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #4a5568;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-card {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 15px 20px;
+            text-align: center;
+            min-width: 120px;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+        
+        .stat-label {
+            color: #718096;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .filter-section {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .filter-section label {
+            font-weight: bold;
+            color: #4a5568;
+        }
+        
+        .filter-section select {
+            padding: 8px 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        
+        .search-section {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .search-section input {
+            padding: 8px 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 5px;
+            font-size: 1em;
+            width: 200px;
+        }
+        
+        .word-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .word-table th {
+            background: #667eea;
+            color: white;
+            padding: 15px 10px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        .word-table th:nth-child(1) { width: 8%; }  /* ID */
+        .word-table th:nth-child(2) { width: 30%; } /* 日本語 */
+        .word-table th:nth-child(3) { width: 25%; } /* 英語 */
+        .word-table th:nth-child(4) { width: 12%; } /* 難易度 */
+        .word-table th:nth-child(5) { width: 15%; } /* ステータス */
+        .word-table th:nth-child(6) { width: 10%; } /* 難易度調整 */
+        
+        .word-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .word-table tr:hover {
+            background: #f7fafc;
+        }
+        
+        .difficulty-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+            text-align: center;
+            min-width: 30px;
+        }
+        
+        .difficulty-high {
+            background: #fc8181;
+            color: white;
+        }
+        
+        .difficulty-medium {
+            background: #f6ad55;
+            color: white;
+        }
+        
+        .difficulty-low {
+            background: #68d391;
+            color: white;
+        }
+        
+        .difficulty-hidden {
+            background: #a0aec0;
+            color: white;
+        }
+        
+        .difficulty-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+        }
+        
+        .difficulty-btn {
+            width: 30px;
+            height: 30px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .difficulty-btn.increase {
+            background: #48bb78;
+            color: white;
+        }
+        
+        .difficulty-btn.decrease {
+            background: #f56565;
+            color: white;
+        }
+        
+        .difficulty-btn:hover:not(:disabled) {
+            opacity: 0.8;
+            transform: scale(1.1);
+        }
+        
+        .difficulty-btn:disabled {
+            background: #e2e8f0;
+            color: #a0aec0;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .difficulty-value {
+            min-width: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: #4a5568;
+        }
+        
+        .back-button {
+            padding: 15px 30px;
+            background: #e2e8f0;
+            color: #4a5568;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .back-button:hover {
+            background: #cbd5e0;
+            transform: translateY(-2px);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #718096;
+            font-size: 1.2em;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 50px;
+            color: #718096;
+            font-size: 1.1em;
+        }
+        
+        @media (max-width: 768px) {
+            .word-table {
+                font-size: 0.9em;
+            }
+            
+            .word-table th, .word-table td {
+                padding: 8px 5px;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-section, .search-section {
+                justify-content: center;
+            }
+            
+            .difficulty-btn {
+                width: 25px;
+                height: 25px;
+                font-size: 1em;
+            }
+            
+            .word-table th:nth-child(1) { width: 8%; }  /* ID */
+            .word-table th:nth-child(2) { width: 25%; } /* 日本語 */
+            .word-table th:nth-child(3) { width: 20%; } /* 英語 */
+            .word-table th:nth-child(4) { width: 12%; } /* 難易度 */
+            .word-table th:nth-child(5) { width: 15%; } /* ステータス */
+            .word-table th:nth-child(6) { width: 20%; } /* 難易度調整 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Unit 1 - 単語リスト</h1>
+        
+        <div class="stats" id="stats">
+            <div class="stat-card">
+                <span class="stat-number" id="totalWords">-</span>
+                <div class="stat-label">総単語数</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="learnedWords">-</span>
+                <div class="stat-label">学習済み</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="hiddenWords">-</span>
+                <div class="stat-label">非表示</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="activeWords">-</span>
+                <div class="stat-label">学習中</div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <div class="filter-section">
+                <label for="difficultyFilter">難易度フィルター:</label>
+                <select id="difficultyFilter">
+                    <option value="all">すべて</option>
+                    <option value="high">高 (3以上)</option>
+                    <option value="medium">中 (1-2)</option>
+                    <option value="low">低 (0)</option>
+                    <option value="hidden">非表示 (-1)</option>
+                </select>
+            </div>
+            
+            <div class="search-section">
+                <label for="searchInput">検索:</label>
+                <input type="text" id="searchInput" placeholder="日本語または英語で検索">
+            </div>
+        </div>
+        
+        <div id="loadingMessage" class="loading">
+            単語リストを読み込んでいます...
+        </div>
+        
+        <table class="word-table" id="wordTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>日本語</th>
+                    <th>英語</th>
+                    <th>難易度</th>
+                    <th>ステータス</th>
+                    <th>難易度調整</th>
+                </tr>
+            </thead>
+            <tbody id="wordTableBody">
+            </tbody>
+        </table>
+        
+        <div id="noResultsMessage" class="no-results" style="display: none;">
+            条件に一致する単語が見つかりません。
+        </div>
+        
+        <button class="back-button" id="backButton">← Unit 1 メニューに戻る</button>
+    </div>
+</body>
+</html>
+</body>
+</html>
