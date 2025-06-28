@@ -216,6 +216,40 @@
             color: #4a5568;
         }
         
+        .top-actions {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .bottom-actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .reset-all-button {
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(240, 147, 251, 0.4);
+        }
+        
+        .reset-all-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(240, 147, 251, 0.6);
+        }
+        
+        .reset-all-button:active {
+            transform: translateY(0);
+        }
+        
         .back-button {
             padding: 15px 30px;
             background: #e2e8f0;
@@ -279,6 +313,11 @@
             .word-table th:nth-child(4) { width: 12%; } /* 難易度 */
             .word-table th:nth-child(5) { width: 15%; } /* ステータス */
             .word-table th:nth-child(6) { width: 20%; } /* 難易度調整 */
+            
+            .reset-all-button {
+                font-size: 1em;
+                padding: 12px 20px;
+            }
         }
     </style>
 </head>
@@ -303,6 +342,10 @@
                 <span class="stat-number" id="activeWords">-</span>
                 <div class="stat-label">学習中</div>
             </div>
+        </div>
+        
+        <div class="top-actions">
+            <button class="reset-all-button" id="resetAllButton">🔄 全単語を勉強しなおす（difficulty+1）</button>
         </div>
         
         <div class="controls">
@@ -346,7 +389,9 @@
             条件に一致する単語が見つかりません。
         </div>
         
-        <button class="back-button" id="backButton">← Unit 1 メニューに戻る</button>
+        <div class="bottom-actions">
+            <button class="back-button" id="backButton">← Unit 1 メニューに戻る</button>
+        </div>
     </div>
 </body>
 </html>
