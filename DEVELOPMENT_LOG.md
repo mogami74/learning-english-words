@@ -602,3 +602,67 @@ const weight = Math.max(1, word.difficulty);
 3. 新しい課題（スペリングコンテスト等）の追加準備
 
 **開発ルール実践**: この開発ログ更新により、新しく制定した「git push → 開発ログ更新」ルールを確実に実施しました。
+
+---
+
+## 残りのunit構造完全移行とlesson拡張 (続き)
+58. **残りunitディレクトリのリネーム完了**
+    - **実行内容**: `unit2` → `lesson2`, `unit3` → `lesson3`, `unit4` → `lesson4`
+    - **ディレクトリ移行**: 4個のunitディレクトリを全てlessonに統一
+    - **構造統一**: プロジェクト全体でunit表現を完全撤廃
+
+59. **lesson2 wordlist.json汎用化**
+    - **変更内容**: `"unit": 2` → `"lesson": 2`
+    - **displayInfo追加**: cardTitle, cardDescription, cardSubtitle, shortDescription, category
+    - **互換性確保**: 既存の学習データを保持したまま新フォーマット適用
+
+60. **lesson3, lesson4基本構造作成**
+    - **lesson3**: 「動詞と行動」テーマのwordlist.json新規作成
+    - **lesson4**: 「形容詞と描写」テーマのwordlist.json新規作成
+    - **displayInfo**: 各レッスンに適切なメタデータ設定済み
+
+61. **lessons-config.json更新**
+    - **追加エントリ**: lesson2〜lesson4を設定ファイルに追加
+    - **ステータス管理**: lesson2をactive、lesson3,4をcoming-soonに設定
+    - **順序管理**: order 1-6で適切にソート設定
+
+62. **動作確認完了**
+    - **TypeScriptコンパイル**: エラーなし、watch mode正常動作
+    - **Webpackサーバー**: ポート8083で正常起動
+    - **APIサーバー**: ポート3001で正常起動
+    - **ビルド結果**: 全bundleファイル正常生成
+
+---
+
+### Git Push完了とプロジェクト状況
+63. **コミット・プッシュ実行**
+    - **コミットハッシュ**: `aaa2cf1`
+    - **作業内容**: unit→lesson完全移行、lesson2-4基本構造作成
+    - **変更ファイル数**: 7個（リネーム・新規・修正）
+    - **git pushステータス**: 正常完了
+
+64. **プロジェクト構造完成度**
+    - **lessonsディレクトリ**: lesson1, lesson2, lesson3, lesson4, spelling-contest
+    - **汎用化達成度**: 100%（全unitディレクトリ撤廃完了）
+    - **拡張性**: 新lesson追加の基盤完成
+    - **テーマ多様性**: 基礎・表現・動詞・形容詞・スペリングコンテスト
+
+65. **今後の発展準備完了**
+    - **lesson2**: 既存データあり、即座に学習可能
+    - **lesson3, lesson4**: 基本構造のみ、単語データ追加待ち
+    - **新lesson追加**: テンプレート化されたプロセスで容易に追加可能
+    - **課題多様化**: 学校の様々な課題に対応する基盤完成
+
+---
+
+**現在のサーバー状況**:
+- 🟢 TypeScript Watch: ポートなし（ファイル監視）
+- 🟢 Webpack Dev Server: http://localhost:8083/
+- 🟢 Node.js API Server: http://localhost:3001/
+
+**次回作業予定**:
+1. ブラウザでアプリケーション動作確認
+2. lesson2の学習機能テスト
+3. lesson3, lesson4への単語データ追加検討
+
+**開発ルール実践**: git push完了後の開発ログ更新を実施し、プロジェクトの進捗を正確に記録しました。

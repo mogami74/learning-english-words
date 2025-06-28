@@ -186,8 +186,8 @@
         <button class="back-button" id="backButton">← メイン画面に戻る</button>
     </div>
 
-    <!-- Unit1WordListクラスを読み込み -->
-    <script src="./unit1.js"></script>
+    <!-- Lesson1WordListクラスを読み込み -->
+    <script src="./lesson.js"></script>
     <script>
         // 現在の状態管理
         let currentState = 'japanese'; // 'japanese' or 'english'
@@ -206,7 +206,7 @@
         async function init() {
             // wordlistが読み込まれるまで待つ
             const checkWordList = () => {
-                if (window.unit1WordList && window.unit1WordList.getWords().length > 0) {
+                if (window.lessonWordList && window.lessonWordList.getWords().length > 0) {
                     wordDisplay.classList.remove('loading');
                     showRandomJapanese();
                 } else {
@@ -218,7 +218,7 @@
 
         // ランダムな日本語を表示
         function showRandomJapanese() {
-            currentWord = window.unit1WordList.getRandomWord();
+            currentWord = window.lessonWordList.getRandomWord();
             if (currentWord) {
                 currentState = 'japanese';
                 wordDisplay.className = 'word-display state-japanese';
@@ -286,7 +286,7 @@
         learnedButton.addEventListener('click', async () => {
             if (currentWord && currentState === 'english') {
                 // 単語のdifficultyを1減らす
-                await window.unit1WordList.markWordAsLearned(currentWord.id);
+                await window.lessonWordList.markWordAsLearned(currentWord.id);
                 
                 // 次の単語を表示
                 showRandomJapanese();
