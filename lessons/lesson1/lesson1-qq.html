@@ -73,12 +73,23 @@
         }
         
         .word-category {
-            background: #f5576c;
+            background: #667eea;
             color: white;
             padding: 8px 16px;
             border-radius: 20px;
             font-size: 1em;
             margin-bottom: 10px;
+        }
+        
+        .word-count-hint {
+            background: #f093fb;
+            background: linear-gradient(43deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+            display: inline-block;
         }
         
         .instruction {
@@ -119,6 +130,7 @@
         <div class="main-content">
             <div class="word-display loading" id="wordDisplay">
                 <div class="word-category" id="wordCategory">読み込み中...</div>
+                <div class="word-count-hint" id="wordCountHint" style="display: none;">語数: ?語</div>
                 <div class="word-text" id="wordText">wordlistを読み込んでいます...</div>
                 <div class="instruction" id="instruction">しばらくお待ちください</div>
             </div>
@@ -135,6 +147,7 @@
         const wordDisplay = document.getElementById('wordDisplay');
         const wordText = document.getElementById('wordText');
         const wordCategory = document.getElementById('wordCategory');
+        const wordCountHint = document.getElementById('wordCountHint');
         const instruction = document.getElementById('instruction');
         const backButton = document.getElementById('backButton');
 
@@ -158,6 +171,15 @@
             if (currentWord) {
                 wordCategory.textContent = `単語 ${currentWord.id}`;
                 wordText.textContent = currentWord.japanese;
+                
+                // 語数ヒントを表示
+                if (currentWord.wordCount > 1) {
+                    wordCountHint.textContent = `語数: ${currentWord.wordCount}語`;
+                    wordCountHint.style.display = 'inline-block';
+                } else {
+                    wordCountHint.style.display = 'none';
+                }
+                
                 instruction.textContent = 'クリックして次の日本語を表示';
             }
         }
