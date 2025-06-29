@@ -5,6 +5,7 @@ interface Word {
     english: string;
     category: string;
     difficulty: number;
+    wordCount: number; // 英語回答の語数
 }
 
 interface WordList {

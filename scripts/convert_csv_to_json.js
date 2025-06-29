@@ -54,8 +54,8 @@ function convertCsvToJson() {
     // メタデータ付きオブジェクトを作成
     const wordListData = {
         metadata: {
-            title: "Unit 1: 基礎英単語100語",
-            description: "中学校レベルの基礎英単語集",
+            title: "（仮）",
+            description: "",
             level: "beginner",
             unit: 1,
             totalWords: words.length,

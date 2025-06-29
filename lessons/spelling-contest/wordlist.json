@@ -20,19 +20,22 @@
       "id": 1,
       "japanese": "必要な",
       "english": "necessary",
-      "difficulty": 2
+      "difficulty": 2,
+      "wordCount": 1
     },
     {
       "id": 2,
       "japanese": "美しい",
       "english": "beautiful",
-      "difficulty": 2
+      "difficulty": 2,
+      "wordCount": 1
     },
     {
       "id": 3,
       "japanese": "興味深い",
       "english": "interesting",
-      "difficulty": 2
+      "difficulty": 2,
+      "wordCount": 1
     }
   ]
 }

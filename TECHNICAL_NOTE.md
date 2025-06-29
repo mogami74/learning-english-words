@@ -46,6 +46,7 @@ interface Word {
     english: string;
     category: string;    // 自動分類（動詞、名詞等）
     difficulty: number;  // 難易度（1-3）
+    wordCount: number;   // 英語回答の語数
 }
 
 interface WordList {
